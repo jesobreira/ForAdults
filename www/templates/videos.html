@@ -1,1 +1,15 @@
-<h1>Videos</h1>
+{{videos}}
+<div data-ng-controller='VideosController'>
+	<ul class="list">
+	    <li class="item" data-ng-repeat="video in videos.videos | orderBy: predicate:reverse">
+			<a href="#/videos/{{category.category}}" >
+				{{ category.category }}
+			</a>
+		    <a class="item item-thumbnail-left" href="#">
+		      <img src="http://img.l3.cdn.redtubefiles.com/_thumbs/0001129/1129675/1129675_007m.jpg">
+		      <h2>Pretty Hate Machine</h2>
+		      <p>Nine Inch Nails</p>
+		    </a>			
+	    </li>
+	</ul>
+</div>
