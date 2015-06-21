@@ -1,4 +1,3 @@
-   
 var app = angular.module('app', ['ngRoute']);
 
 function categoriesFunction($scope, $http) {
