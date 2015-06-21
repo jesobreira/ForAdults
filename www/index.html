@@ -1,99 +1,39 @@
 <!doctype html>
-<html data-ng-app="redApp">
- <head>
-  <meta charset="UTF-8" />
-    <title>{{ workshop }}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<html ng-app="app">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+      <title>AngularJS: Single Page com ngView e ngRoute</title>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+      <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+      <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+      <link href="css/ionic.app.css" rel="stylesheet">
+      -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+      <!-- ionic/angularjs js -->
+      <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+      <!-- cordova script (this will be a 404 during development) -->
+      <script src="cordova.js"></script>
 
-
-  </head>
-  <body>
-
-    <div data-ng-controller='RedController'>
-      <button data-ng-click='rodar()'>Exibir Informações</button>
-      <p data-ng-show='mostraVideo'>
-        <img class="user-avatar" data-ng-src="{{videos.video.default_thumb}}" />
-        <br>
-        <span class='user-label'>Titulo: </span> {{videos.video.title}}
-        <br>
-        <span class='user-label'>Duração: </span> {{videos.video.duration}}
-        <br>
-
-        <iframe ng-src="{{video.src}}" frameborder="0" width="434" height="344" scrolling="no"></iframe>
-      </p>
-    </div>
-
-    <script>
-      angular.module('redApp', ['filters', 'controllers']);
-
-      angular.module('controllers', [])
-           .controller('RedController', ['$scope', '$http',
-
-            function ($scope, $http) {
-              $scope.mostraVideo = false;
-
-              $scope.rodar = function () {
-                $scope.mostraVideo = !$scope.mostraVideo;
-              }
-
-              var url = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Videos.getVideoById&video_id=335358&output=json&thumbsize=all';
-              var method = 'GET';
-
-              $http({
-                url: url,
-                method: method
-              }).
-              success(function(data){
-                console.log('Data: ', data);
-                data.src = 'http://embed.redtube.com/?id=' + data.video_id + '&bgcolor=000000';
-                $scope.videos = data;
-              }).
-              error(function(err){
-                console.log('Erro: ', err);
-              })
-            }
-        ]
-      );
-
-      angular.module('filters', [])
-        .filter('reverseName', function() {
-          return function (text) {
-            if (text)
-              return text.split("").reverse().join("");
-          };
-        })
-        .filter('truncate', function() {
-          return function (text, length, end) {
-            if (text) {
-              if (isNaN(length))
-                length = 10;
-
-              if (end === undefined) 
-                end = "..."
-
-              if (text.length <= length) {
-                return text;
-              } else {
-                return String(text).substring(0, length) + end;
-              }
-            }
-          };
-        })
-      ;
-    </script>
-  </body>
+   </head>
+ 
+   <body>
+      <ul class="nav nav-tabs">
+         <li ng-class="{active: activetab == '/'}"><a href="#/home">Home</a></li>
+         <li ng-class="{active: activetab == '/sobre'}"><a href="#/sobre">Sobre</a></li>
+         <li ng-class="{active: activetab == '/contato'}"><a href="#/contato">Contato</a></li>
+      </ul>
+ 
+      <div ng-view></div>
+ 
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+ 
+      <script src="js/app.js"></script>
+      <script src="js/controllers.js"></script>
+   </body>
 </html>
