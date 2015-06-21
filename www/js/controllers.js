@@ -16,4 +16,5 @@ app.controller('ContatoCtrl', function($rootScope, $location)
 app.controller('VideosCtrl', function($rootScope, $location)
 {
    $rootScope.activetab = $location.path();
+   console.log($rootScope);
 });
