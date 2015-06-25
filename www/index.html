@@ -17,14 +17,22 @@
    </head>
  
    <body>
-      <h1>v 0.0.5 </h1>
+      <h1>v 0.0.6 </h1>
       <ul class="nav nav-tabs">
          <li ng-class="{active: activetab == '/'}"><a href="#/home">Home</a></li>
          <li ng-class="{active: activetab == '/sobre'}"><a href="#/sobre">Sobre</a></li>
          <li ng-class="{active: activetab == '/contato'}"><a href="#/contato">Contato</a></li>
       </ul>
       
-      <div ng-view></div>
+      <div data-ng-controller='CategoryController'>
+         <ul class="list">
+             <li class="item" data-ng-repeat="category in categories.categories | orderBy: predicate:reverse">
+               <a href="#/videos/{{category.category}}" >
+                  {{ category.category }}
+               </a>
+             </li>
+         </ul>
+      </div>
 
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
