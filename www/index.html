@@ -27,24 +27,31 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        
+
+
+        <!--Jquery Mobile -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <!-- Jquery Mobile -->
+
         <title>Hello World</title>
     </head>
-    <body>
-        <div class="app">
-            <h1>
-                <a href="./spec.html">PhoneGap</a>
-            </h1>
-            <!-- <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div> -->
-        </div>
+    <body>  
+        <div data-role="page">
 
-        <!-- // <script type="text/javascript" src="cordova.js"></script> -->
-        <!-- // <script type="text/javascript" src="js/index.js"></script> -->
-        <script type="text/javascript">
-            // app.initialize();
-        </script>
+            <div data-role="header" style="padding: 0 65px;">
+                <img src="http://4.bp.blogspot.com/__YTe2PPsrcY/SxkpQoLCZwI/AAAAAAAAAVA/pCQMx3Ege2A/s400/redtube.com_logo.png" />
+            </div><!-- /header -->
+
+            <div data-role="content">   
+                <ul data-role="listview" data-inset="true" data-filter="true" id="categories">
+                    <li><a href="#">Acura</a></li>
+                </ul>     
+            </div><!-- /content -->
+
+        </div><!-- /page -->
+
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

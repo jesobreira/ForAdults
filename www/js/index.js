@@ -47,3 +47,25 @@ var app = {
     //     console.log('Received Event: ' + id);
     // }
 };
+
+
+$(document).ready(function(){
+    var url  = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Categories.getCategoriesList&output=json'
+      , html = '';
+    
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: url,
+        success: function(data){
+            $.each(data['categories'], function(i, item) {
+                html += '<li><a href="./category.html/' + item['category'] + '">' + item['category'] + '</a></li>';
+            });
+
+            $('#categories').html(html);
+                    
+            $('#categories').trigger('create');    
+            $('#categories').listview('refresh');
+        }
+    });
+});
