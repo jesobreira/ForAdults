@@ -1,0 +1,19 @@
+<div data-ng-controller='VideosController'>
+	<ul class="list-group">
+	    <li class="list-group-item" data-ng-repeat="item in videos.videos">
+		    <a class="item item-thumbnail-left" href="#">
+			  <a href="#" class="list-group-item">
+
+			    <h4 class="list-group-item-heading">
+			  		<img src="{{item.video.default_thumb}}" class="img-circle" width="120" height="120">
+			    </h4>
+			    <p class="list-group-item-text">
+			      <p>{{item.video.title}}</p>
+			      <em>{{item.video.duration}}</em>			  		
+			    </p>
+
+			  </a>
+		    </a>			
+	    </li>
+	</ul>
+</div>
