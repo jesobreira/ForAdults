@@ -102,6 +102,11 @@ function videos(category) {
 
             // $('#videos').trigger('create');    
             // $('#videos').listview('refresh');
+        }, 
+        error: function(data) {
+            alert('ocorreu algum erro');
         }
     });
+
+    alert('fim da função');
 }
