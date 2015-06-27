@@ -17,39 +17,6 @@
  * under the License.
  */
 var app = {
-    videos: function(category) {
-        var url = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=amateur&thumbsize=all';
-        var html = '';
-            
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: url,
-            success: function(data){
-                console.log(data);
-                $.each(data['videos'], function(i, item) {
-                    html += '<div class="ui-grid-a">';
-                    html += '    <div class="ui-block-a">';
-                    html += '        <div class="ui-bar ui-bar-a" style="height:120px; margin-top: 14px;">';
-                    html += '            <img src="' + item.video.default_thumb + '" height="120px" width="180px" />';
-                    html += '        </div>';
-                    html += '    </div>';
-                    html += '    <div class="ui-block-b">';
-                    html += '        <div class="ui-bar ui-bar-a" style="height:120px">';
-                    html += '            ' + item.video.title + ' <br>';
-                    html += '            Duration: ' + item.video.duration + '';
-                    html += '        </div>';
-                    html += '    </div>';
-                    html += '</div><!-- /grid-a -->';
-                });
-
-                $('#videos').html(html);
-
-                $('#videos').trigger('create');    
-                $('#videos').listview('refresh');
-            }
-        });
-    }
 
     // // Application Constructor
     // initialize: function() {
@@ -103,3 +70,37 @@ $(document).ready(function(){
         }
     });
 });
+
+
+function videos(category) {
+    var url = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=amateur&thumbsize=all';
+    var html = '';
+        
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: url,
+        success: function(data){
+            $.each(data['videos'], function(i, item) {
+                html += '<div class="ui-grid-a">';
+                html += '    <div class="ui-block-a">';
+                html += '        <div class="ui-bar ui-bar-a" style="height:120px; margin-top: 14px;">';
+                html += '            <img src="' + item.video.default_thumb + '" height="120px" width="180px" />';
+                html += '        </div>';
+                html += '    </div>';
+                html += '    <div class="ui-block-b">';
+                html += '        <div class="ui-bar ui-bar-a" style="height:120px">';
+                html += '            ' + item.video.title + ' <br>';
+                html += '            Duration: ' + item.video.duration + '';
+                html += '        </div>';
+                html += '    </div>';
+                html += '</div><!-- /grid-a -->';
+            });
+
+            $('#videos').html(html);
+
+            $('#videos').trigger('create');    
+            // $('#videos').listview('refresh');
+        }
+    });
+}
