@@ -60,7 +60,7 @@ $(document).ready(function(){
         url: url,
         success: function(data){
             $.each(data['categories'], function(i, item) {
-                html += '<li><a href="category.html?category=' + item['category'] + '">' + item['category'] + '</a></li>';
+                html += '<li><a data-ajax="false" href="category.html?category=' + item['category'] + '">' + item['category'] + '</a></li>';
             });
 
             $('#categories').html(html);
@@ -73,7 +73,10 @@ $(document).ready(function(){
 
 
 function videos(category) {
-    var url = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=amateur&thumbsize=all';
+    var queryDict = {}
+    location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]}) 
+
+    var url = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=' + queryDict.category + '&thumbsize=all';
     var html = '';
         
     $.ajax({
@@ -81,7 +84,6 @@ function videos(category) {
         dataType: "json",
         url: url,
         success: function(data){
-            alert('oi');
             $.each(data['videos'], function(i, item) {
                 html += '<div class="ui-grid-a">';
                 html += '    <div class="ui-block-a">';
@@ -107,6 +109,4 @@ function videos(category) {
             alert('ocorreu algum erro');
         }
     });
-
-    alert('fim da função');
 }
