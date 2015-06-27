@@ -72,7 +72,7 @@ $(document).ready(function(){
 });
 
 
-function videos(category) {
+function videos() {
     var queryDict = {}
     location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]}) 
 
@@ -93,7 +93,7 @@ function videos(category) {
                 html += '    </div>';
                 html += '    <div class="ui-block-b">';
                 html += '        <div class="ui-bar ui-bar-a" style="height:120px">';
-                html += '            ' + item.video.title + ' <br>';
+                html += '            <a href="video.html?video=' + item.video.video_id + '" data-ajax="false" style="color: red;" >' + item.video.title + ' </a> <br>';
                 html += '            Duration: ' + item.video.duration + '';
                 html += '        </div>';
                 html += '    </div>';
@@ -104,6 +104,26 @@ function videos(category) {
 
             // $('#videos').trigger('create');    
             // $('#videos').listview('refresh');
+        }, 
+        error: function(data) {
+            alert('ocorreu algum erro');
+        }
+    });
+}
+
+function viewVideo() {
+    var queryDict = {}
+    location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+
+    var url = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Videos.getVideoEmbedCode&video_id=' + queryDict.video + '&output=json'
+    var html = '';
+        
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: url,
+        success: function(data){
+            $('#video_url').html(atob(data.embed.code));
         }, 
         error: function(data) {
             alert('ocorreu algum erro');
