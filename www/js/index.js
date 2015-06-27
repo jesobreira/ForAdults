@@ -81,6 +81,7 @@ function videos(category) {
         dataType: "json",
         url: url,
         success: function(data){
+            alert('oi');
             $.each(data['videos'], function(i, item) {
                 html += '<div class="ui-grid-a">';
                 html += '    <div class="ui-block-a">';
@@ -99,7 +100,7 @@ function videos(category) {
 
             $('#videos').html(html);
 
-            $('#videos').trigger('create');    
+            // $('#videos').trigger('create');    
             // $('#videos').listview('refresh');
         }
     });
