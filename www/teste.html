@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TESTE</title>
+</head>
+<body data-ng-app="Teste">
+	{{22+2}}
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('Teste', ['controllers']);
+
+ 		angular.module('controllers', [])
+ 			   .controller('UserController', ['$scope', '$http',
+
+ 			   	function ($scope, $http) {
+					var url = 'aniversarios.local/produtos';
+			   		var method = 'POST';
+
+			   		$http({
+			   			url: url,
+			   			method: method,
+			   			data: {
+				            "nome": "Teste1",
+				            "preco": "1.00",
+				            "dataInclusao": "0000-00-00",
+				            "idCategoria": "1"
+				        }
+			   		}).
+			   		success(function(data){
+			   			console.log('Data: ', data);
+			   			$scope.user = data;
+			   		}).
+			   		error(function(err){
+			   			console.log('Erro: ', err);
+			   		})
+ 			   	}
+ 			]
+ 		);
+	</script>
+</body>
+</html>
