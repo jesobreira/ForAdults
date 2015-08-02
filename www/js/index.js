@@ -17,7 +17,7 @@
  * under the License.
  */
 var app = {
-    onLogin = function() {
+    onLogin: function() {
         var email = $('#sign-in-email').val()
           , pass  = $('#sign-in-password').val()
         ;
@@ -29,11 +29,39 @@ var app = {
         if (pass == '') {
             alert('Password is empty');
         }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: {
+                email: email,
+                senha:  pass
+            }, 
+            url: "http://api.ciawn.com.br/api/client/?email=winnersdevelopers@gmail.com&senha=chinelao",
+            success: function(data) {
+                if (data.message == "error") {
+                    alert('Você ainda não tem cadastro');
+                    return;
+                }
+
+                $.cookie('email', email, { expires: 7 });
+                $.cookie('senha', pass, { expires: 7 });
+                window.location.href = 'categories.html';
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
     }
 };
 
 
 $(document).ready(function(){
+
+    $('#sign-in').click(function(){
+        app.onLogin();
+    })
+
     var url  = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Categories.getCategoriesList&output=json'
       , html = '';
     
