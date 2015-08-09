@@ -40,18 +40,51 @@
     <body>  
         <div data-role="page">
 
-            <div data-role="header" style="padding: 0 105px;">
+            <div data-role="header" style="padding: 0 80px;">
                 <img src="http://4.bp.blogspot.com/__YTe2PPsrcY/SxkpQoLCZwI/AAAAAAAAAVA/pCQMx3Ege2A/s400/redtube.com_logo.png" />
             </div><!-- /header -->
 
-            <div data-role="content">   
-                <ul data-role="listview" data-inset="true" data-filter="true" id="categories">
-                
-                </ul>     
+            <div data-role="content">  
+
+                <div role="main" class="ui-content">
+                    <h3>Sign In</h3>
+
+                    <label for="txt-email">Email</label>
+                    <input type="text" name="txt-email" id="sign-in-email" value="">
+                    <label for="txt-password">Password</label>
+                    <input type="password" name="txt-password" id="sign-in-password" value="">
+
+                    <input type="submit" name="login" id="sign-in" value="SIGN IN" data-corners="false" />
+                </div>
+
+                <div role="main" class="ui-content">
+
+                        <h3>Sign Up</h3>
+                        <label for="txt-first-name">First Name</label>
+                        <input type="text" name="txt-first-name" id="txt-first-name" value="">
+                        <label for="txt-last-name">Last Name</label>
+                        <input type="text" name="txt-last-name" id="txt-last-name" value="">
+                        <label for="txt-email">Email Address</label>
+                        <input type="text" name="txt-email" id="txt-email" value="">
+                        <label for="txt-password">Password</label>
+                        <input type="password" name="txt-password" id="txt-password" value="">
+                        <label for="txt-password-confirm">Confirm Password</label>
+                        <input type="password" name="txt-password-confirm" id="txt-password-confirm" value="">         
+
+                        <input type="submit" id="sign-up" name="login" value="SIGN UP" data-corners="false" />
+    
+                </div>
             </div><!-- /content -->
 
         </div><!-- /page -->
 
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>        
+        <script type="text/javascript" src="js/cookie.js"></script>
+
+        <script type="text/javascript">
+            $(window).load(function(){
+                app.onVerifyAcess();
+            });        
+        </script>
     </body>
 </html>
