@@ -17,6 +17,14 @@
  * under the License.
  */
 var app = {
+    onVerifyAcess: function() {
+        if ($.cookie('email') != '' && $.cookie('senha') != '') {
+            window.location = 'categories.html';
+            return;
+        }
+
+        return;
+    },
     onLogin: function() {
         var email = $('#sign-in-email').val()
           , pass  = $('#sign-in-password').val()
@@ -52,6 +60,61 @@ var app = {
                 console.log(data);
             }
         });
+    },
+    onSignUp: function() {
+        var first_name = $('#txt-first-name').val()
+          , last_name  = $('#txt-last-name').val()
+          , email      = $('#txt-email').val()
+          , password   = $('#txt-password').val()
+          , password_c = $('#txt-password-confirm').val()
+          ;
+
+        if (first_name == '') {
+            alert('First name is empty');
+        }
+
+        if (last_name == '') {
+            alert('Last name is empty');
+        }
+
+        if (email == '') {
+            alert('Email is empty');
+        }
+
+        if (password == '') {
+            alert('Password is empty');
+        }
+
+        if (password_c == '') {
+            alert('Password confimation is empty');
+        }
+
+        if (password != password_c) {
+            alert('Password is diferent password confimation');
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: {
+                nome1: first_name,
+                nome2: last_name,
+                email: email,
+                senha: password,
+            }, 
+            url: "http://api.ciawn.com.br/api/client/?email=winnersdevelopers@gmail.com&senha=chinelao",
+            success: function(data) {
+                alert('Sucesso, você será redirecionado para a pagina de categorias');
+
+                $.cookie('email', email, { expires: 7 });
+                $.cookie('senha', password, { expires: 7 });
+
+                window.location.href = 'categories.html';
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
     }
 };
 
@@ -60,7 +123,11 @@ $(document).ready(function(){
 
     $('#sign-in').click(function(){
         app.onLogin();
-    })
+    });
+
+    $('#sign-up').click(function(){
+        app.onSignUp();
+    });
 
     var url  = 'http://cors-server.getup.io/url/api.redtube.com/?data=redtube.Categories.getCategoriesList&output=json'
       , html = '';

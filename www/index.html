@@ -58,7 +58,6 @@
                 </div>
 
                 <div role="main" class="ui-content">
-                    <form> 
 
                         <h3>Sign Up</h3>
                         <label for="txt-first-name">First Name</label>
@@ -72,9 +71,8 @@
                         <label for="txt-password-confirm">Confirm Password</label>
                         <input type="password" name="txt-password-confirm" id="txt-password-confirm" value="">         
 
-                        <input type="submit" name="login" value="SIGN UP" data-corners="false" />
+                        <input type="submit" id="sign-up" name="login" value="SIGN UP" data-corners="false" />
     
-                    </form>
                 </div>
             </div><!-- /content -->
 
@@ -82,5 +80,11 @@
 
         <script type="text/javascript" src="js/index.js"></script>        
         <script type="text/javascript" src="js/cookie.js"></script>
+
+        <script type="text/javascript">
+            $(window).load(function(){
+                app.onVerifyAcess();
+            });        
+        </script>
     </body>
 </html>
