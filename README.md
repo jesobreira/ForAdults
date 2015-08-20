@@ -14,4 +14,4 @@ Now download code stable access ( https://github.com/reginaldojunior/ForAdults/r
 
 All code of application stay in folder www.
 
-Sugestions, critical or improvements create issues or contact jr.design_2010@hotmail.com
+Sugestions, critical or improvements create issues contact jr.design_2010@hotmail.com
