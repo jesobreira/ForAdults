@@ -10,32 +10,29 @@
 		angular.module('Teste', ['controllers']);
 
  		angular.module('controllers', [])
- 			   .controller('UserController', ['$scope', '$http',
-
- 			   	function ($scope, $http) {
-					var url = 'aniversarios.local/produtos';
-			   		var method = 'POST';
-
-			   		$http({
-			   			url: url,
-			   			method: method,
-			   			data: {
-				            "nome": "Teste1",
-				            "preco": "1.00",
-				            "dataInclusao": "0000-00-00",
-				            "idCategoria": "1"
-				        }
-			   		}).
-			   		success(function(data){
-			   			console.log('Data: ', data);
-			   			$scope.user = data;
-			   		}).
-			   		error(function(err){
-			   			console.log('Erro: ', err);
-			   		})
- 			   	}
- 			]
- 		);
+		  .controller('UserController', ['$scope', '$http',
+		    function ($scope, $http) {
+		    var url = 'aniversarios.local/produtos';
+		      var method = 'POST';
+		      $http({
+		        url: url,
+		        method: method,
+		        data: {
+		          "nome": "Teste1",
+		          "preco": "1.00",
+		          "dataInclusao": "0000-00-00",
+		          "idCategoria": "1"
+		        }
+		      }).
+		      then(function successCallback(data) {
+		        console.log('Data: ', data);
+		        $scope.user = data;
+		      }, function errorCallback(data) {
+		        console.log('Erro: ', err);
+		      }
+		    }
+		  ]
+		);
 	</script>
 </body>
 </html>
